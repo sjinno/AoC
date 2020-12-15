@@ -25,14 +25,43 @@ pub fn password_philosophy() -> std::io::Result<()> {
     let filename = "files/passwords.txt";
     let file = File::open(filename)?;
     let reader = BufReader::new(file);
-    let mut data = vec![];
 
+    let mut count = 0;
     for line in reader.lines() {
-        data.push(line.unwrap());
+        let data = line.unwrap();
+        let split_data: Vec<&str> = data.split(' ').collect();
+        if split_data.len() == 1 {
+            break;
+        }
+
+        let range: Vec<&str> = split_data[0].split('-').collect();
+        let lower_bound = range[0].parse::<i32>().unwrap() - 1;
+        let upper_bound = range[1].parse::<i32>().unwrap() + 1;
+        // ----- DEBUGGING -----
+        // println!("{}, {}", lower_bound, upper_bound);
+        // let target_char: Vec<&str> = split_data[1].split(':').collect();
+        // let mut target_char = split_data[1].chars();
+        // target_char.next();
+        // println!("{:?}", target_char.as_str());
+        // -----    END    -----
+        let target_char = split_data[1].chars().next().unwrap();
+        // println!("{}", target_char);
+
+        let password = split_data[2];
+        // println!("{}", password);
+
+        let mut char_count = 0;
+        for c in password.chars() {
+            if c == target_char {
+                char_count += 1;
+            }
+        }
+
+        if char_count > lower_bound && char_count < upper_bound {
+            count += 1;
+        }
     }
-    data.pop();
 
-    println!("{:?}", data);
-
+    println!("{}", count); // Print the number of valid passwords.
     Ok(())
 }
