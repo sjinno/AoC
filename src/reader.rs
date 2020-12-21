@@ -7,3 +7,9 @@ pub fn read_txt(filename: &str) -> io::Result<Vec<String>> {
     let lines = reader.lines().collect::<io::Result<Vec<String>>>()?;
     Ok(lines)
 }
+
+pub fn clean_input(lines: Vec<String>) -> String {
+    let contents = lines.join("\n");
+    let cleaned_inputs = str::replace(&contents, " ", "\n");
+    cleaned_inputs
+}
