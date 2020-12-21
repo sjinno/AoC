@@ -3,7 +3,8 @@ mod reader;
 // mod day2;
 // mod day3;
 // mod day4;
-mod day5;
+// mod day5;
+mod day6;
 
 fn main() {
     // // DAY 1
@@ -38,10 +39,17 @@ fn main() {
     //     println!("Error occured: {}.", e.to_string());
     // }
     // Day 5
-    if let Err(e) = day5::part1() {
+    // if let Err(e) = day5::part1() {
+    //     println!("Error occured: {}.", e.to_string());
+    // }
+    // if let Err(e) = day5::part2() {
+    //     println!("Error occured: {}.", e.to_string());
+    // }
+    // Day 6
+    if let Err(e) = day6::part1() {
         println!("Error occured: {}.", e.to_string());
     }
-    if let Err(e) = day5::part2() {
-        println!("Error occured: {}.", e.to_string());
-    }
+    // if let Err(e) = day6::part2() {
+    //     println!("Error occured: {}.", e.to_string());
+    // }
 }
